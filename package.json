@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "vercel-build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -15,6 +16,7 @@
     "babel-plugin-superjson-next": "^0.4.4",
     "better-react-spinkit": "^2.0.4",
     "dotenv-cli": "^6.0.0",
+    "eslint": "^8.22.0",
     "faker": "^6.6.6",
     "formidable": "^3.2.4",
     "formik": "^2.2.9",
@@ -40,7 +42,6 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.8",
-    "eslint": "8.22.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-next": "12.2.5",
     "eslint-import-resolver-alias": "^1.1.2",
