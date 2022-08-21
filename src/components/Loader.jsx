@@ -1,5 +1,5 @@
-import { ThreeBounce } from "better-react-spinkit";
-import Image from "next/image";
+import { ThreeBounce } from 'better-react-spinkit'
+import Image from 'next/image'
 
 function Loader() {
   return (
@@ -8,6 +8,7 @@ function Loader() {
         <span className="relative w-[400px] h-[250px] lg:w-[550px] lg:h-[240px]">
           <Image
             src="/logo-2.jpeg"
+            alt="logo-2"
             layout="fill"
             objectFit="contain"
             className="animate-pulse"
@@ -16,7 +17,7 @@ function Loader() {
         <ThreeBounce size={23} color="#15883e" />
       </div>
     </div>
-  );
+  )
 }
 
-export default Loader;
+export default Loader

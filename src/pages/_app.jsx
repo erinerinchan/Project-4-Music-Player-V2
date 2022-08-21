@@ -1,5 +1,5 @@
 import '@/styles/globals.css'
-import { SessionProvider } from  'next-auth/react'
+import { SessionProvider } from 'next-auth/react'
 import { RecoilRoot } from 'recoil'
 import { ToastContainer } from 'react-toastify'
 import { appWithTranslation } from 'next-i18next'
@@ -11,11 +11,10 @@ function MyApp({
   pageProps: { session, ...pageProps }
 }) {
   return (
-    <>
-      <SessionProvider session={session}>
-        <RecoilRoot>
-          <Component {...pageProps} />
-          <ToastContainer
+    <SessionProvider session={session}>
+      <RecoilRoot>
+        <Component {...pageProps} />
+        <ToastContainer
           position="bottom-left"
           autoClose={5000}
           hideProgressBar={false}
@@ -25,10 +24,9 @@ function MyApp({
           pauseOnFocusLoss
           draggable
           pauseOnHover
-          />
-        </RecoilRoot>
-      </SessionProvider>
-    </>
+        />
+      </RecoilRoot>
+    </SessionProvider>
   )
 }
 

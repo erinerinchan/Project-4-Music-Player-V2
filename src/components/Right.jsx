@@ -2,12 +2,12 @@ import { HiOutlineShieldCheck } from 'react-icons/hi'
 import { MdOutlineSettings } from 'react-icons/md'
 import { BiBell } from 'react-icons/bi'
 import { ViewGridIcon } from '@heroicons/react/solid'
-import Dropdown from './Dropdown'
 import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
+import Dropdown from './Dropdown'
 import RecentlyPlayed from './RecentlyPlayed'
 
-function Right ({ spotifyApi, chooseTrack }) {
+function Right({ spotifyApi, chooseTrack }) {
   const { data: session } = useSession()
   const accessToken = session?.accessToken
   const [recentlyPlayed, setRecentlyPlayed] = useState([])
@@ -18,15 +18,13 @@ function Right ({ spotifyApi, chooseTrack }) {
 
     spotifyApi.getMyRecentlyPlayedTracks({ limit: 20 }).then((res) => {
       setRecentlyPlayed(
-        res.body.items.map(({ track }) => {
-          return {
-            id: track.id,
-            artist: track.artists[0].name,
-            title: track.name,
-            uri: track.uri,
-            albumUrl: track.album.images[0].url
-          }
-        })
+        res.body.items.map(({ track }) => ({
+          id: track.id,
+          artist: track.artists[0].name,
+          title: track.name,
+          uri: track.uri,
+          albumUrl: track.album.images[0].url
+        }))
       )
     })
   }, [accessToken])
@@ -38,7 +36,7 @@ function Right ({ spotifyApi, chooseTrack }) {
         <div className="flex items-center space-x-4 border-2 border-[#262626] rounded-full h-12 py-3 px-4">
           <HiOutlineShieldCheck className="text-[#ccc] text-xl" />
           <MdOutlineSettings className="text-[#ccc] text-xl" />
-          <BiBell className="text-[#ccc] text-xl" />
+          <BiBell className="text-[#CCCCCC] text-xl" />
         </div>
         {/* Profile */}
         <Dropdown />
@@ -60,7 +58,9 @@ function Right ({ spotifyApi, chooseTrack }) {
             />
           ))}
         </div>
-        <button className="btn">View All</button>
+        <button className="btn text-[#CECECE] bg-[#1A1A1A] text-[13px] py-3.5 px-4 rounded-2xl w-full font-bold bg-opacity-80 hover:bg-opacity-100 transition ease-out" type="button">
+          View All
+        </button>
       </div>
     </section>
   )

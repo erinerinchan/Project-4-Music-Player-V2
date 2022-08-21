@@ -6,21 +6,20 @@ import Loader from '../components/Loader'
 
 export default function Home() {
   const router = useRouter()
-  const { status, data: session } = useSession({
+  const { status } = useSession({
     required: true,
     onUnauthenticated() {
       router.push('/auth/signin')
     }
   })
 
+  // Loading animation...
   if (status === 'loading') {
     return <Loader />
   }
 
-  console.log(session)
-
   return (
-    <div className="">
+    <div>
       <Head>
         <title>Spotify - Dashboard</title>
         <link rel="icon" href="/favicon.ico" />
