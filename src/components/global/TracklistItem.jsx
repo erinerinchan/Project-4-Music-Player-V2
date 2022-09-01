@@ -71,6 +71,7 @@ const TracklistItem = React.forwardRef(({ track, styleName, highlight }, ref) =>
       <div className="h-full flex align-center">
         <div className="bg-[#282828] text-white w-12 h-12 shadow-slate-200 mr-4 flex align-center justify-center relative">
           {thumbNail ? (
+            // eslint-disable-next-line @next/next/no-img-element
             <img
               loading="lazy"
               src={thumbNail}

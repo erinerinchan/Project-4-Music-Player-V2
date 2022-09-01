@@ -12,6 +12,7 @@ const ArtistRowItem = ({ info }) => {
       <a href={`/${type}/${id}`}>
         <div className="bg-[#282828] flex align-center justify-center relative">
           {thumbNail
+            // eslint-disable-next-line @next/next/no-img-element
             ? <img loading="lazy" src={thumbNail} style={{ width: '100%', height: '100%' }} alt="" />
             : (
               <div className="text-white absolute inset-[35%]">

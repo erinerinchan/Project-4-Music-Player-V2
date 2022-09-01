@@ -80,6 +80,7 @@ function FollowButton({ follow, onFollow, loggedIn }) {
       data-tip="follow"
       data-for="tooltipMain"
       data-event="click"
+      // eslint-disable-next-line no-console
       onClick={() => console.log('hi')}
       type="button"
     >

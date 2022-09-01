@@ -66,6 +66,7 @@ function ArtistIndexPage() {
         .then((response) => {
           setFollow(response.data[0])
         })
+        // eslint-disable-next-line no-console
         .catch((error) => console.log(error))
     }
 
