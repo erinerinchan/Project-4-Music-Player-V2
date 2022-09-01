@@ -48,6 +48,10 @@ function Signin({ providers }) {
   )
 }
 
+Signin.layoutOptions = {
+  noLayout: true
+}
+
 export default Signin
 
 export async function getServerSideProps() {

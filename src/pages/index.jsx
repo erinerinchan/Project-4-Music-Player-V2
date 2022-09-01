@@ -1,31 +1,24 @@
-import { useSession } from 'next-auth/react'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
-import Dashboard from '../components/Dashboard'
-import Loader from '../components/Loader'
+import Body from '../components/dashboard/Body'
+import Right from '../layouts/Right'
 
 export default function Home() {
-  const router = useRouter()
-  const { status } = useSession({
-    required: true,
-    onUnauthenticated() {
-      router.push('/auth/signin')
-    }
-  })
-
-  // Loading animation...
-  if (status === 'loading') {
-    return <Loader />
-  }
-
   return (
-    <div>
+    <>
       <Head>
         <title>Spotify - Dashboard</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Dashboard />
-    </div>
+      <main className="flex bg-black lg:pb-24">
+        <Body />
+        <Right />
+      </main>
+    </>
   )
+}
+
+Home.layoutOptions = {
+  search: true,
+  posters: true
 }

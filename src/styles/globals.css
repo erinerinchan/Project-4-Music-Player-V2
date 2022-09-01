@@ -11,8 +11,8 @@
 }
 
 @layer components {
-  .sidebarIcon {
-    @apply h-6 text-[#808080] cursor-pointer;
+  .sidebarIcons {
+    @apply text-white hover:text-slate-600 hover:scale-105 cursor-pointer;
   }
 
   .tag {
@@ -30,4 +30,20 @@
   .icon {
     @apply hover:scale-125 transition-all duration-150 ease-out;
   }
+}
+
+.track-list-item .track-list-item-icon .icon-play {
+  display: none;
+}
+
+.track-list-item .track-list-item-icon .icon-music {
+  display: block;
+}
+
+.track-list-item .track-list-item-icon:hover .icon-play {
+  display: block;
+}
+
+.track-list-item .track-list-item-icon:hover .icon-music {
+  display: none;
 }
