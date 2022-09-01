@@ -13,6 +13,7 @@ export default function Dropdown() {
       <div className="w-full absolute right-1 group">
         <Menu.Button className="flex items-center w-full px-4 py-3 text-sm font-medium text-white bg-[#1A1A1A] rounded-full hover:bg-[#3E3E3E]">
           <ChevronDownIcon className="h-6 text-[#686868]" aria-hidden="true" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={session?.user?.image}
             alt="user-image"

@@ -2,7 +2,6 @@ import { BsFillPlayFill, BsFillPauseFill } from 'react-icons/bs'
 import { AiFillHeart } from 'react-icons/ai'
 import { useState } from 'react'
 import { ImHeadphones } from 'react-icons/im'
-
 import useSpotify from '@/contexts/spotify'
 
 function Track({ track }) {

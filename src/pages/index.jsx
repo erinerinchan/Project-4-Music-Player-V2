@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Body from '../components/dashboard/Body'
+import Body from '@/components/dashboard/Body'
 import Right from '../layouts/Right'
 
 export default function Home() {

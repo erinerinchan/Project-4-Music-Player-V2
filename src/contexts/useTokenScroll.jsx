@@ -9,7 +9,6 @@ function useTokenScroll(setList, token, source) {
     if (observer.current) observer.current.disconnect()
     observer.current = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting && next) {
-        console.log('hi')
         const makeRequest = reqWithToken(next, token, source)
         makeRequest()
           .then((response) => {
@@ -20,6 +19,7 @@ function useTokenScroll(setList, token, source) {
             setList((tracks) => [...tracks, ...resultList])
             setNext(next)
           })
+          // eslint-disable-next-line no-console
           .catch((error) => console.log(error))
       }
     })

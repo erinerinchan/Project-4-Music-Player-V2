@@ -1,5 +1,5 @@
-import Body from '../../components/dashboard/Body'
-import Right from '../../layouts/Right'
+import Body from '@/components/dashboard/Body'
+import Right from '@/layouts/Right'
 
 function Dashboard() {
   return (

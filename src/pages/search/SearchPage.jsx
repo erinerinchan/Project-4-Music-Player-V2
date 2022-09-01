@@ -14,7 +14,7 @@ function SearchPage() {
 
   return (
     <>
-      {/* Genres */}
+      {/* Browse All Genres */}
       <main className="flex min-h-screen min-w-max bg-black lg:pb-24">
         <section className="bg-black ml-12 py-4 space-y-8 md:max-w-6xl flex-grow md:mr-2.5">
           <h1 className="text-white font-bold">Browse All Genres</h1>

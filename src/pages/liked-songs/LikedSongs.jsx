@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import useSpotify from '@/contexts/spotify'
 import PageBanner from '../../components/global/PageBanner'
-import PlaylistFunctions from '../../components/global/PlaylistFunctions'
 import Tracklist from '../../components/global/Tracklist'
 
 function LikedSongs() {
@@ -9,7 +8,7 @@ function LikedSongs() {
     isReady,
     likedSongs,
     getLikedSongs,
-    setTracksQueue, setIsPlaying
+    setTracksQueue
   } = useSpotify()
 
   const bannerInfo = {

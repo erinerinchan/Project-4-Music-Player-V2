@@ -13,8 +13,6 @@ const putWithToken = (endpoint, accessToken, cancelSource, data, method = 'PUT')
       cancelToken
     }
 
-    console.log(options)
-
     let result
     try {
       result = await axios(options)

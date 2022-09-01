@@ -1,5 +1,4 @@
 import { BsFillPauseFill, BsFillPlayFill } from 'react-icons/bs'
-
 import useSpotify from '@/contexts/spotify'
 
 function Poster({ track }) {

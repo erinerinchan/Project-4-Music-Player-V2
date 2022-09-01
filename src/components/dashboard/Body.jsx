@@ -1,7 +1,5 @@
 import { useEffect } from 'react'
-
 import useSpotify from '@/contexts/spotify'
-
 import Track from './Track'
 
 export default function Body() {
@@ -40,7 +38,7 @@ export default function Body() {
           <button className="btn" type="button">All Genres</button>
         </div>
 
-        {/* Tracks */}
+        {/* New releases */}
         <div className="px-10 grow">
           <h1 className="text-white font-bold mb-3">{tracksTitle}</h1>
           <div className="space-y-3 border-2 border-[#262626] rounded-2xl p-3 bg-[#0D0D0D] overflow-y-scroll h-[1000px] md:h-96">

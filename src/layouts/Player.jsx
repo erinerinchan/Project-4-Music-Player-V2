@@ -32,7 +32,6 @@ function Player() {
         token={accessToken}
         showSaveIcon
         callback={(state) => {
-          console.log(state)
           if (state.isPlaying) {
             setIsPlaying(true)
             setCurrentTrack(state.track)
