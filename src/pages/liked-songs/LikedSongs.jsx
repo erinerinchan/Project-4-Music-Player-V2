@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import useSpotify from '@/contexts/spotify'
 import PageBanner from '../../components/global/PageBanner'
 import PlaylistFunctions from '../../components/global/PlaylistFunctions'
@@ -25,8 +25,6 @@ function LikedSongs() {
       getLikedSongs()
     }
   }, [isReady])
-
-  console.log(likedSongs)
 
   return (
     <div className="mt-[-60px] pb-8" style={{ display: `${likedSongs.length === 0 ? 'none' : 'block'}` }}>

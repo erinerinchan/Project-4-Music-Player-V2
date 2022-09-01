@@ -222,11 +222,11 @@ export function SpotifyProvider({ children }) {
   const getAlbums = (albumIds) => {
     if (!isAlbumsLoading && (albumsTotal === null || albumsTotal > albumsOffset)) {
       setIsAlbumsLoading(true)
-      spotifyApi.getAlbums(albumIds, { limit: 10, offset: albumsOffset }).then((res) => {
-        setAlbumsTotal(res.albums.total)
-        setAlbumsOffset((offset) => (offset + 10))
+      spotifyApi.getAlbums(albumIds, { limit: 20, offset: albumsOffset }).then((res) => {
+        setAlbumsTotal(res.total)
+        setAlbumsOffset((offset) => (offset + 20))
         // eslint-disable-next-line no-shadow
-        setAlbums((album) => [...album, ...res.albums.items])
+        setAlbums((album) => [...album, ...res.items])
       }).finally(() => {
         setIsAlbumsLoading(false)
       })
