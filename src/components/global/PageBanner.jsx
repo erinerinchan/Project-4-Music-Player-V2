@@ -43,6 +43,7 @@ function PageBanner({ pageTitle, bannerInfo }) {
       <div className={`mr-6 w-48 h-48 flex items-center justify-center z-[2] min-w-[192px] bg-[#282828] text-[#7f7f7f] ${pageTitle === 'profile' || pageTitle === 'artist' ? 'rounded-[50%]' : null}`}>
         {imgURL
           ? (
+            // eslint-disable-next-line @next/next/no-img-element
             <img
               loading="lazy"
               src={imgURL}

@@ -25,7 +25,7 @@ function Genre() {
   }, [genreId, isReady])
 
   return (
-    <div className="pt-4 pb-8 max-w-[1955px]">
+    <div className="flex pt-4 pb-8 max-w-[1955px]">
       <PageTitle name={genre?.name} />
       <div className="my-4 grid gap-4 grid-cols-6 auto-rows-auto">
         {genrePlaylists.map((playlist, i) => (

@@ -1,6 +1,7 @@
 function CardDisplay({ url, type }) {
   return (
     <div className="relative w-full pb-4 mb-4 bg-transparent shadow-lg" style={{ borderRadius: type === 'artist' ? '50%' : '0' }}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={url}
         loading="lazy"

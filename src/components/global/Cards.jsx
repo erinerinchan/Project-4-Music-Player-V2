@@ -51,7 +51,7 @@ const Cards = React.forwardRef(({ info, type }, ref) => {
       {/* eslint-disable-next-line no-nested-ternary */}
       <Link href={info.to ? info.to : type === 'track' ? `/album/${info.album.id}?highlight=${id}` : `/global/${type}/${id}`} style={{ textDecoration: 'none', color: 'var(--main-text)', zIndex: '3' }}>
         <a>
-          <div ref={ref} className="bg-[#272727] p-5 rounded-lg w-full h-[100%] cursor-pointer relative">
+          <div ref={ref} className="bg-[#272727] p-5 rounded-lg w-full h-full cursor-pointer relative">
             {/* Card Display */}
             <CardDisplay url={imageURL} type={type} />
             {/* Card Info */}
@@ -60,7 +60,7 @@ const Cards = React.forwardRef(({ info, type }, ref) => {
         </a>
       </Link>
       <button
-        className="flex items-center justify-center bg-[#1DB954] text-white border-0 rounded-full m-0 absolute w-10 h-10 bottom-0 right-0 mb-4 mr-5 outline-0"
+        className="flex items-center justify-center bg-[#1DB954] text-white border-0 rounded-full m-0 absolute w-8 h-8 bottom-0 right-0 mb-4 mr-5 outline-0"
         title="Play"
         onClick={handleClick}
         type="button"

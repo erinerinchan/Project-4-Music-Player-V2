@@ -109,12 +109,9 @@ const TracklistItem = React.forwardRef(({ track, styleName, highlight }, ref) =>
               style={explicit ? { display: 'flex' } : { display: 'none' }}
             />
             {album && (
-            <>
-              <span className="text-white opacity-60 inline-block translate-y-[-1px] text-xs px-2">•</span>
-              <span className="text-white opacity-60 transition-opacity no-underline text-ellipsis">
-                <a href={`/album/${album.id}`}>{album.name}</a>
+            <span className="text-white opacity-60 transition-opacity no-underline text-ellipsis">
+              <a href={`/album/${album.id}`}>{album.name}</a>
               </span>
-            </>
             )}
           </div>
           )}

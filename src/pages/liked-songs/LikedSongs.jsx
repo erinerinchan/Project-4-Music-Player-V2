@@ -27,11 +27,9 @@ function LikedSongs() {
   }, [isReady])
 
   return (
-    <div className="mt-[-60px] pb-8" style={{ display: `${likedSongs.length === 0 ? 'none' : 'block'}` }}>
+    <div className="mt-[-60px] pb-8 h-[232px] w-full absolute z-0 bg-[#121212]" style={{ display: `${likedSongs.length === 0 ? 'none' : 'block'}`, backgroundColor: `${bannerInfo.primary_color}` }}>
       <PageBanner pageTitle="playlist" bannerInfo={bannerInfo} />
       <div className="relative">
-        <div className="h-[232px] w-full absolute z-0 bg-[#121212]" style={{ backgroundColor: `${bannerInfo.primary_color}` }} />
-        <PlaylistFunctions type="playOnly" setIsPlaying={setIsPlaying} />
         <div className="px-8 max-w-[1955px] z-[3]">
           {/* ref={lastRef} */}
           <Tracklist tracks={likedSongs} setTracksQueue={setTracksQueue} />
