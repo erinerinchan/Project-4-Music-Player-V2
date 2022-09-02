@@ -1,5 +1,5 @@
 # Live Demo 
-[[link](https://project-4-music-player-end.vercel.app/)](https://project-4-music-player-end.vercel.app/)
+[[link](https://project-4-music-player-end.vercel.app/)]
 
 # Init Instructions
 - Clone and rename folder $ git clone git@github.com:dented-academy/next-starter.git [your_project_name_here]
