@@ -1,3 +1,7 @@
+# Live Demo 
+[link](https://project-4-music-player-end.vercel.app/)
+<a href="https://project-4-music-player-end.vercel.app/">link</a>
+
 # Init Instructions
 - Clone and rename folder $ git clone git@github.com:dented-academy/next-starter.git [your_project_name_here]
 - Find and rename all instance of [your_project_name_here] to your actual project name
