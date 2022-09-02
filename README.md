@@ -1,7 +1,7 @@
 # Live Demo 
 [[Click here](https://project-4-music-player-end.vercel.app/)]
 
-![Uploading Screenshot 2022-09-02 at 1.46.26 PM.png…]()
+<img width="1440" alt="Screenshot 2022-09-02 at 1 47 33 PM" src="https://user-images.githubusercontent.com/35587864/188067397-3055915d-5f0b-46f5-9ee5-8935d71e3f65.png">
 
 # Init Instructions
 - Clone and rename folder $ git clone git@github.com:dented-academy/next-starter.git [your_project_name_here]
