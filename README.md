@@ -1,6 +1,8 @@
 # Live Demo 
 [[Click here](https://project-4-music-player-end.vercel.app/)]
 
+![Uploading Screenshot 2022-09-02 at 1.46.26 PM.png…]()
+
 # Init Instructions
 - Clone and rename folder $ git clone git@github.com:dented-academy/next-starter.git [your_project_name_here]
 - Find and rename all instance of [your_project_name_here] to your actual project name
