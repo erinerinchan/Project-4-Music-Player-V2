@@ -47,17 +47,15 @@ export function SpotifyProvider({ children }) {
   const [categoryPlaylistsOffset, setCategoryPlaylistsOffset] = useState(0)
   const [categoryPlaylistsTotal, setCategoryPlaylistsTotal] = useState(null)
 
-  // Individual Playlist | API ?
+  // Individual Playlist | API
   const [playlist, setPlaylist] = useState(null)
   const [isPlaylistLoading, setPlaylistLoading] = useState(false)
 
-  // Follow Playlist | API ?
-  const [followPlaylist, setFollowPlaylist] = useState(null)
-  const [isFollowPlaylistLoading, setFollowPlaylistLoading] = useState(false)
-
-  // Individual Artist | API ?
-  const [artist, setArtist] = useState(null)
-  const [isArtistLoading, setIsArtistLoading] = useState(false)
+  // User's Playlists| API ?
+  const [userPlaylists, setUserPlaylists] = useState([])
+  const [isUserPlaylistsLoading, setIsUserPlaylistsLoading] = useState(false)
+  const [userPlaylistsOffset, setUserPlaylistsOffset] = useState(0)
+  const [userPlaylistsTotal, setUserPlaylistsTotal] = useState(null)
 
   // Artists | API ?
   const [artists, setArtists] = useState([])
@@ -75,7 +73,7 @@ export function SpotifyProvider({ children }) {
   const [albumsOffset, setAlbumsOffset] = useState(0)
   const [albumsTotal, setAlbumsTotal] = useState(null)
 
-  // Liked songs | API ?
+  // Liked songs | API
   const [likedSongs, setLikedSongs] = useState([])
   const [isLikedSongsLoading, setIsLikedSongsLoading] = useState(false)
   const [likedSongsOffset, setLikedSongsOffset] = useState(0)
@@ -197,13 +195,15 @@ export function SpotifyProvider({ children }) {
     }
   }
 
-  const getFollowPlaylist = (playlistId) => {
-    if (!isFollowPlaylistLoading) {
-      setFollowPlaylistLoading(true)
-      spotifyApi.followPlaylist(playlistId).then((res) => {
-        setFollowPlaylist(res.followPlaylist.item)
+  const getUserPlaylists = (userId) => {
+    if (!isUserPlaylistsLoading && (userPlaylistsTotal === null || userPlaylistsTotal > userPlaylistsOffset)) {
+      setIsUserPlaylistsLoading(true)
+      spotifyApi.getUserPlaylists(userId, { limit: 10, offset: userPlaylistsOffset }).then((res) => {
+        setUserPlaylistsTotal(res.total)
+        setUserPlaylistsOffset((offset) => (offset + 10))
+        setUserPlaylists((list) => [...list, ...res.items])
       }).finally(() => {
-        setFollowPlaylistLoading(false)
+        setIsUserPlaylistsLoading(false)
       })
     }
   }
@@ -233,25 +233,11 @@ export function SpotifyProvider({ children }) {
     }
   }
 
-  const getArtist = (artistId) => {
-    if (!isArtistLoading) {
-      setIsArtistLoading(true)
-      spotifyApi.getArtist(artistId).then((res) => {
-        setArtist(res.artist.item)
-      }).finally(() => {
-        setIsArtistLoading(false)
-      })
-    }
-  }
-
-  const getArtists = (artistIds) => {
-    if (!isArtistsLoading && (artistsTotal === null || artistsTotal > artistsOffset)) {
+  const getArtists = () => {
+    if (!isArtistsLoading) {
       setIsArtistsLoading(true)
-      spotifyApi.getArtists(artistIds, { limit: 20, offset: artistsOffset }).then((res) => {
-        setArtistsTotal(res.artists.total)
-        setArtistsOffset((offset) => (offset + 20))
-        // eslint-disable-next-line no-shadow
-        setArtists((artist) => [...artist, ...res.artists.items])
+      spotifyApi.getFollowedArtists({ limit: 50 }).then((res) => {
+        setArtists(res.artists.items)
       }).finally(() => {
         setIsArtistsLoading(false)
       })
@@ -302,12 +288,12 @@ export function SpotifyProvider({ children }) {
     playlist,
     setPlaylist,
     getPlaylist,
-    followPlaylist,
-    setFollowPlaylist,
-    getFollowPlaylist,
-    artist,
-    setArtist,
-    getArtist,
+    userPlaylists,
+    userPlaylistsOffset,
+    setUserPlaylistsOffset,
+    userPlaylistsTotal,
+    setUserPlaylistsTotal,
+    getUserPlaylists,
     artists,
     setArtists,
     artistsOffset,

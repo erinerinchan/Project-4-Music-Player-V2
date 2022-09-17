@@ -10,6 +10,7 @@ function LikedSongs() {
     getLikedSongs,
     setTracksQueue
   } = useSpotify()
+  // this is the correct way to get data from your spotifyApi
 
   const bannerInfo = {
     name: 'Liked Songs',

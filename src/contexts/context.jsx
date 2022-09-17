@@ -5,3 +5,5 @@ export const LoginContext = createContext(false)
 export const TokenContext = createContext(null)
 export const MessageContext = createContext(() => {})
 export const PlayContext = createContext(() => {})
+
+// your context are all empty

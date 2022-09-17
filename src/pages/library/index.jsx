@@ -1,46 +1,45 @@
-import { useState, useEffect, useContext } from 'react'
+import { useEffect, useState } from 'react'
 import useSpotify from '@/contexts/spotify'
-import axios from 'axios'
+import useInfiScroll from '@/hooks/useInfiScroll'
 import Link from 'next/link'
+import Cards from '../../components/library-page/playlist-page/Cards'
 import Row from '../../components/library-page/Row'
-import { TokenContext } from '../../contexts/context'
 
 function Library({ playlists }) {
-  const { isReady, spotifyApi } = useSpotify()
-  const [artists, setArtists] = useState([])
-  const [albums, setAlbums] = useState([])
-  const token = useContext(TokenContext)
+  const [artists] = useState([])
+  const [albums] = useState([])
+  const {
+    isReady,
+    userPlaylists, getUserPlaylists
+  } = useSpotify()
+  const { setCallback, lastRef } = useInfiScroll(10)
 
   // eslint-disable-next-line consistent-return
   useEffect(() => {
-    if (token) {
-      const cancelSource = axios.CancelToken.source()
-
-      const makeRequests = async () => {
-        const requestArtist = spotifyApi.isFollowingArtists(token, cancelSource)
-        const requestAlbum = spotifyApi.containsMySavedAlbums(token, cancelSource)
-
-        const [_artists, _albums] = await Promise.all([requestArtist(), requestAlbum()])
-        setArtists(_artists.data.artists.items)
-        setAlbums(_albums.data.items)
-      }
-
-      makeRequests()
-
-      return () => cancelSource.cancel()
+    if (isReady) {
+      getUserPlaylists()
+      setCallback(() => () => {
+        getUserPlaylists()
+      })
     }
   }, [isReady])
 
-  return (
+  // eslint-disable-next-line react/no-unstable-nested-components
+  const LinksBtns = () => (
     <div className="flex flex-row px-8 space-x-5 max-w-[1955px] z-[3]" style={{ paddingTop: '16px' }}>
-      <Link href="/library/playlist">
+      <Link
+        href={{
+          pathname: '/library',
+          query: { playlist: 'library', libraryId: 'libraryId' }
+        }}
+      >
         <a>
           <Row name="Playlists" playlists={playlists} />
         </a>
       </Link>
       <Link
         href={{
-          pathname: '/library/artist',
+          pathname: '/library/[artistId]',
           query: { artist: 'artist', artistId: 'artistId' }
         }}
       >
@@ -50,7 +49,7 @@ function Library({ playlists }) {
       </Link>
       <Link
         href={{
-          pathname: '/library/album',
+          pathname: '/library/[albumId]',
           query: { album: 'album', albumId: 'albumId' }
         }}
       >
@@ -58,6 +57,22 @@ function Library({ playlists }) {
           <Row name="Albums" playlists={albums} />
         </a>
       </Link>
+    </div>
+  )
+
+  return (
+    <div className="flex flex-col pt-4 pb-8 max-w-[1955px]">
+      <LinksBtns />
+      <div className="my-4 grid gap-4 grid-cols-6 auto-rows-auto">
+        {userPlaylists.map((playlist, i) => (
+          <Cards
+            key={playlist.id}
+            ref={i === userPlaylists.length - 1 ? lastRef : null}
+            info={playlist}
+            type="playlist"
+          />
+        ))}
+      </div>
     </div>
   )
 }
