@@ -44,24 +44,18 @@ export function SpotifyProvider({ children }) {
   // Genre (Category) Playlists | API
   const [genrePlaylists, setGenrePlaylists] = useState([])
   const [isGenrePlaylistsLoading, setIsGenrePlaylistsLoading] = useState(false)
-  const [categoryPlaylistsOffset, setCategoryPlaylistsOffset] = useState(0)
-  const [categoryPlaylistsTotal, setCategoryPlaylistsTotal] = useState(null)
 
   // Individual Playlist | API
   const [playlist, setPlaylist] = useState(null)
   const [isPlaylistLoading, setPlaylistLoading] = useState(false)
 
-  // User's Playlists| API ?
+  // User's Playlists| API
   const [userPlaylists, setUserPlaylists] = useState([])
   const [isUserPlaylistsLoading, setIsUserPlaylistsLoading] = useState(false)
-  const [userPlaylistsOffset, setUserPlaylistsOffset] = useState(0)
-  const [userPlaylistsTotal, setUserPlaylistsTotal] = useState(null)
 
-  // Artists | API ?
+  // Artists | API
   const [artists, setArtists] = useState([])
   const [isArtistsLoading, setIsArtistsLoading] = useState(false)
-  const [artistsOffset, setArtistsOffset] = useState(0)
-  const [artistsTotal, setArtistsTotal] = useState(null)
 
   // Individual Album | API ?
   const [album, setAlbum] = useState(null)
@@ -172,12 +166,10 @@ export function SpotifyProvider({ children }) {
   }
 
   const getCategoryPlaylists = (genreId) => {
-    if (!isGenrePlaylistsLoading && (categoryPlaylistsTotal === null || categoryPlaylistsTotal > categoryPlaylistsOffset)) {
+    if (!isGenrePlaylistsLoading) {
       setIsGenrePlaylistsLoading(true)
-      spotifyApi.getCategoryPlaylists(genreId, { limit: 10, offset: categoryPlaylistsOffset }).then((res) => {
-        setCategoryPlaylistsTotal(res.playlists.total)
-        setCategoryPlaylistsOffset((offset) => (offset + 10))
-        setGenrePlaylists((list) => [...list, ...res.playlists.items])
+      spotifyApi.getCategoryPlaylists(genreId, { limit: 50 }).then((res) => {
+        setGenrePlaylists(res.playlists.items)
       }).finally(() => {
         setIsGenrePlaylistsLoading(false)
       })
@@ -196,12 +188,10 @@ export function SpotifyProvider({ children }) {
   }
 
   const getUserPlaylists = (userId) => {
-    if (!isUserPlaylistsLoading && (userPlaylistsTotal === null || userPlaylistsTotal > userPlaylistsOffset)) {
+    if (!isUserPlaylistsLoading) {
       setIsUserPlaylistsLoading(true)
-      spotifyApi.getUserPlaylists(userId, { limit: 10, offset: userPlaylistsOffset }).then((res) => {
-        setUserPlaylistsTotal(res.total)
-        setUserPlaylistsOffset((offset) => (offset + 10))
-        setUserPlaylists((list) => [...list, ...res.items])
+      spotifyApi.getUserPlaylists(userId, { limit: 50 }).then((res) => {
+        setUserPlaylists(res.items)
       }).finally(() => {
         setIsUserPlaylistsLoading(false)
       })
@@ -280,26 +270,14 @@ export function SpotifyProvider({ children }) {
     genre,
     getCategory,
     genrePlaylists,
-    categoryPlaylistsOffset,
-    setCategoryPlaylistsOffset,
-    categoryPlaylistsTotal,
-    setCategoryPlaylistsTotal,
     getCategoryPlaylists,
     playlist,
     setPlaylist,
     getPlaylist,
     userPlaylists,
-    userPlaylistsOffset,
-    setUserPlaylistsOffset,
-    userPlaylistsTotal,
-    setUserPlaylistsTotal,
     getUserPlaylists,
     artists,
     setArtists,
-    artistsOffset,
-    setArtistsOffset,
-    artistsTotal,
-    setArtistsTotal,
     getArtists,
     album,
     setAlbum,
