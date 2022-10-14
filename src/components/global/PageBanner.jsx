@@ -61,7 +61,7 @@ function PageBanner({ pageTitle, bannerInfo }) {
       <div className="z-[1] flex flex-col">
         <h2 className="font-bold mt-4 mb-1 text-xs uppercase">{pageTitle}</h2>
         <span style={spanStyle}>
-          <h1 className={name.length > 15 ? 'py-[0.08em] text-5xl leading-[60px] font-black tracking-tight' : 'py-[0.08em] text-5xl leading-[60px] font-black tracking-tight'}>{name}</h1>
+          <h1 className={name?.length > 15 ? 'py-[0.08em] text-5xl leading-[60px] font-black tracking-tight' : 'py-[0.08em] text-5xl leading-[60px] font-black tracking-tight'}>{name}</h1>
         </span>
         <p className="text-white text-sm leading-4 font-normal mt-4 flex items-center" style={{ display: description === '' ? 'none' : 'flex' }}>{description}</p>
         <div className="flex flex-wrap items-center mt-2">

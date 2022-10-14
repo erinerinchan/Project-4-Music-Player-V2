@@ -49,7 +49,7 @@ function Library({ playlists }) {
       </Link>
       <Link
         href={{
-          pathname: '/library/[albumId]',
+          pathname: '/library/album/[albumId]',
           query: { album: 'album', albumId: 'albumId' }
         }}
       >

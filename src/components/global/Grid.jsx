@@ -2,7 +2,7 @@ import React from 'react'
 import Cards from './Cards'
 
 const Grid = React.forwardRef(({ playlists }, ref) => (
-  <div className="grid grid-cols-[autofill_minmax(164px,_1fr)] grid-rows-[1fr] overflow-y-hidden overflow-x-hidden gap-4 z-[3]">
+  <div className="grid grid-cols-[autofill_minmax(164px,_1fr)] grid-rows-[1fr] overflow-y-scroll overflow-x-scroll gap-4 scrollbar-hide z-[3]">
     {playlists?.map((playlist, index) => {
       if (playlist) {
         if (index + 1 < playlist.length) {

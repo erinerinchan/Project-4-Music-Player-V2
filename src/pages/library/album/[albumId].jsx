@@ -3,28 +3,28 @@ import { useRouter } from 'next/router'
 import useSpotify from '@/contexts/spotify'
 import useInfiScroll from '@/hooks/useInfiScroll'
 import Link from 'next/link'
-import Cards from '../../components/library-page/artist-page/Cards'
-import Row from '../../components/library-page/Row'
+import Cards from '../../../components/library-page/album-page/Cards'
+import Row from '../../../components/library-page/Row'
 
-function ArtistPage() {
+function AlbumPage() {
   const [playlists] = useState([])
   const [artists] = useState([])
   const [albums] = useState([])
   const {
     isReady,
-    Artists, getArtists
+    Albums, getAlbums
   } = useSpotify()
-  const { query: { artistId } } = useRouter()
+  const { query: { albumId } } = useRouter()
   const { setCallback, lastRef } = useInfiScroll(10)
 
   useEffect(() => {
-    if (artistId && isReady) {
-      getArtists(artistId)
+    if (albumId && isReady) {
+      getAlbums(albumId)
       setCallback(() => () => {
-        getArtists(artistId)
+        getAlbums(albumId)
       })
     }
-  }, [artistId, isReady])
+  }, [albumId, isReady])
 
   // eslint-disable-next-line react/no-unstable-nested-components
   const LinksBtns = () => (
@@ -66,12 +66,12 @@ function ArtistPage() {
     <div className="flex flex-col pt-4 pb-8 max-w-[1955px]">
       <LinksBtns />
       <div className="my-4 grid gap-4 grid-cols-6 auto-rows-auto">
-        {Artists.map((artist, i) => (
+        {Albums.map(({ album }, i) => (
           <Cards
-            key={artist.id}
-            ref={i === Artists.length - 1 ? lastRef : null}
-            info={artist}
-            type="artist"
+            key={album.id}
+            ref={i === Albums.length - 1 ? lastRef : null}
+            info={album}
+            type="album"
           />
         ))}
       </div>
@@ -79,4 +79,4 @@ function ArtistPage() {
   )
 }
 
-export default ArtistPage
+export default AlbumPage

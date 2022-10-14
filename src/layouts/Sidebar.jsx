@@ -9,7 +9,7 @@ import Link from 'next/link'
 
 function Sidebar() {
   return (
-    <section id="sidebar" className="fixed top-0 z-40 flex flex-col items-center bg-black w-[90px] h-[calc(100vh-70px)] space-y-8 p-4 overflow-y-scroll">
+    <section id="sidebar" className="fixed top-0 z-40 flex flex-col items-center bg-black w-[90px] h-[calc(100vh-70px)] space-y-8 p-4 overflow-y-scroll scrollbar-hide">
       <div>
         <Image
           src="/logo.png"

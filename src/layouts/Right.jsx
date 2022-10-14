@@ -17,7 +17,7 @@ function Right() {
     <section className="p-4 px-10 space-y-3">
       {/* Recently played tracks */}
       <h1 className="text-white font-bold">Recently Played</h1>
-      <div className="space-y-3 border-2 border-[#262626] rounded-2xl p-3 bg-[#0D0D0D] overflow-y-scroll h-[250px] md:h-[400px]">
+      <div className="space-y-3 border-2 border-[#262626] rounded-2xl p-3 bg-[#0D0D0D] overflow-y-scroll overflow-x-scroll scrollbar-hide h-[250px] md:h-[400px]">
         {
           recentlyPlayed.map((track, index) => (
             <RecentlyPlayed

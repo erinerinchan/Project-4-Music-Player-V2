@@ -47,25 +47,51 @@ export function SpotifyProvider({ children }) {
 
   // Individual Playlist | API
   const [playlist, setPlaylist] = useState(null)
-  const [isPlaylistLoading, setPlaylistLoading] = useState(false)
+  const [isPlaylistLoading, setIsPlaylistLoading] = useState(false)
 
   // User's Playlists| API
   const [userPlaylists, setUserPlaylists] = useState([])
   const [isUserPlaylistsLoading, setIsUserPlaylistsLoading] = useState(false)
 
-  // Artists | API
-  const [artists, setArtists] = useState([])
+  // User's Artists | API
+  const [Artists, setArtists] = useState([])
   const [isArtistsLoading, setIsArtistsLoading] = useState(false)
 
-  // Individual Album | API ?
+  // Artist | API
+  const [artist, setArtist] = useState(null)
+  const [isArtistLoading, setIsArtistLoading] = useState(false)
+
+  // Artist's Top Tracks | API
+  const [artistTopTracks, setArtistTopTracks] = useState([])
+  const [isArtistTopTracksLoading, setIsArtistTopTracksLoading] = useState(false)
+
+  // Artist's Albums | API
+  const [artistAlbums, setArtistAlbums] = useState([])
+  const [isArtistAlbumsLoading, setIsArtistAlbumsLoading] = useState(false)
+
+  // Artist's Singles | API
+  const [artistSingles, setArtistSingles] = useState([])
+  const [isArtistSinglesLoading, setIsArtistSinglesLoading] = useState(false)
+
+  // Artist's Related Artists | API
+  const [artistRelatedArtists, setArtistRelatedArtists] = useState([])
+  const [isArtistRelatedArtistsLoading, setIsArtistRelatedArtistsLoading] = useState(false)
+
+  // Artist's Appear On | API
+  const [artistAppearOn, setArtistAppearOn] = useState([])
+  const [isArtistAppearOnLoading, setIsArtistAppearOnLoading] = useState(false)
+
+  // Artist's Compilations | API
+  const [artistCompilations, setArtistCompilations] = useState([])
+  const [isArtistCompilationsLoading, setIsArtistCompilationsLoading] = useState(false)
+
+  // User's Albums | API
+  const [Albums, setAlbums] = useState([])
+  const [isAlbumsLoading, setIsAlbumsLoading] = useState(false)
+
+  // Album | API
   const [album, setAlbum] = useState(null)
   const [isAlbumLoading, setIsAlbumLoading] = useState(false)
-
-  // Albums | API ?
-  const [albums, setAlbums] = useState([])
-  const [isAlbumsLoading, setIsAlbumsLoading] = useState(false)
-  const [albumsOffset, setAlbumsOffset] = useState(0)
-  const [albumsTotal, setAlbumsTotal] = useState(null)
 
   // Liked songs | API
   const [likedSongs, setLikedSongs] = useState([])
@@ -178,11 +204,11 @@ export function SpotifyProvider({ children }) {
 
   const getPlaylist = (playlistId) => {
     if (!isPlaylistLoading) {
-      setPlaylistLoading(true)
+      setIsPlaylistLoading(true)
       spotifyApi.getPlaylist(playlistId).then((res) => {
         setPlaylist(res)
       }).finally(() => {
-        setPlaylistLoading(false)
+        setIsPlaylistLoading(false)
       })
     }
   }
@@ -198,38 +224,111 @@ export function SpotifyProvider({ children }) {
     }
   }
 
-  const getAlbum = (albumId) => {
-    if (!isAlbumLoading) {
-      setIsAlbumLoading(true)
-      spotifyApi.getAlbum(albumId).then((res) => {
-        setAlbum(res.album.item)
+  const getArtists = (artistIds) => {
+    if (!isArtistsLoading) {
+      setIsArtistsLoading(true)
+      spotifyApi.getFollowedArtists(artistIds, { limit: 50 }).then((res) => {
+        setArtists(res.artists.items)
       }).finally(() => {
-        setIsAlbumLoading(false)
+        setIsArtistsLoading(false)
       })
     }
   }
 
-  const getAlbums = (albumIds) => {
-    if (!isAlbumsLoading && (albumsTotal === null || albumsTotal > albumsOffset)) {
+  // It is supposed to be a string, not an object
+  const getArtist = (artistId) => {
+    if (!isArtistLoading) {
+      setIsArtistLoading(true)
+      spotifyApi.getArtist(artistId).then((res) => {
+        setArtist(res)
+      }).finally(() => {
+        setIsArtistLoading(false)
+      })
+    }
+  }
+
+  const getArtistTopTracks = (artistId) => {
+    if (!isArtistTopTracksLoading) {
+      setIsArtistTopTracksLoading(true)
+      spotifyApi.getArtistTopTracks(artistId, 'HK', { limit: 5 }).then((res) => {
+        setArtistTopTracks(res.tracks)
+      }).finally(() => {
+        setIsArtistTopTracksLoading(false)
+      })
+    }
+  }
+
+  const getArtistAlbums = (artistId) => {
+    if (!isArtistAlbumsLoading) {
+      setIsArtistAlbumsLoading(true)
+      spotifyApi.getArtistAlbums(artistId, { limit: 8, include_groups: 'album' }).then((res) => {
+        setArtistAlbums(res.items)
+      }).finally(() => {
+        setIsArtistAlbumsLoading(false)
+      })
+    }
+  }
+
+  const getArtistSingles = (artistId) => {
+    if (!isArtistSinglesLoading) {
+      setIsArtistSinglesLoading(true)
+      spotifyApi.getArtistAlbums(artistId, { limit: 8, include_groups: 'single' }).then((res) => {
+        setArtistSingles(res.items)
+      }).finally(() => {
+        setIsArtistSinglesLoading(false)
+      })
+    }
+  }
+
+  const getArtistRelatedArtists = (artistId) => {
+    if (!isArtistRelatedArtistsLoading) {
+      setIsArtistRelatedArtistsLoading(true)
+      spotifyApi.getArtistRelatedArtists(artistId, { limit: 8 }).then((res) => {
+        setArtistRelatedArtists(res.artists)
+      }).finally(() => {
+        setIsArtistAlbumsLoading(false)
+      })
+    }
+  }
+
+  const getArtistAppearOn = (artistId) => {
+    if (!isArtistAppearOnLoading) {
+      spotifyApi.getArtistAlbums(artistId, { limit: 8, include_groups: 'appears_on' }).then((res) => {
+        setArtistAppearOn(res.items)
+      }).finally(() => {
+        setIsArtistAppearOnLoading(false)
+      })
+    }
+  }
+
+  const getArtistCompilations = (artistId) => {
+    if (!isArtistCompilationsLoading) {
+      spotifyApi.getArtistAlbums(artistId, { limit: 8, include_groups: 'compilation' }).then((res) => {
+        setArtistCompilations(res.items)
+      }).finally(() => {
+        setIsArtistCompilationsLoading(false)
+      })
+    }
+  }
+
+  const getAlbums = () => {
+    if (!isAlbumsLoading) {
       setIsAlbumsLoading(true)
-      spotifyApi.getAlbums(albumIds, { limit: 20, offset: albumsOffset }).then((res) => {
-        setAlbumsTotal(res.total)
-        setAlbumsOffset((offset) => (offset + 20))
-        // eslint-disable-next-line no-shadow
-        setAlbums((album) => [...album, ...res.items])
+      spotifyApi.getMySavedAlbums({ limit: 50 }).then((res) => {
+        setAlbums(res.items)
       }).finally(() => {
         setIsAlbumsLoading(false)
       })
     }
   }
 
-  const getArtists = () => {
-    if (!isArtistsLoading) {
-      setIsArtistsLoading(true)
-      spotifyApi.getFollowedArtists({ limit: 50 }).then((res) => {
-        setArtists(res.artists.items)
+  const getAlbum = (albumId) => {
+    if (!isAlbumLoading) {
+      setIsAlbumLoading(true)
+      spotifyApi.getAlbum(albumId).then((res) => {
+        setAlbum(res)
       }).finally(() => {
-        setIsArtistsLoading(false)
+        setIsAlbumLoading(false)
       })
     }
   }
@@ -276,19 +375,36 @@ export function SpotifyProvider({ children }) {
     getPlaylist,
     userPlaylists,
     getUserPlaylists,
-    artists,
+    Artists,
     setArtists,
     getArtists,
+    artist,
+    setArtist,
+    getArtist,
+    artistTopTracks,
+    setArtistTopTracks,
+    getArtistTopTracks,
+    artistAlbums,
+    setArtistAlbums,
+    getArtistAlbums,
+    artistSingles,
+    setArtistSingles,
+    getArtistSingles,
+    artistRelatedArtists,
+    setArtistRelatedArtists,
+    getArtistRelatedArtists,
+    artistAppearOn,
+    setArtistAppearOn,
+    getArtistAppearOn,
+    artistCompilations,
+    setArtistCompilations,
+    getArtistCompilations,
+    Albums,
+    setAlbums,
+    getAlbums,
     album,
     setAlbum,
     getAlbum,
-    albums,
-    setAlbums,
-    albumsOffset,
-    setAlbumsOffset,
-    albumsTotal,
-    setAlbumsTotal,
-    getAlbums,
     likedSongs,
     setLikedSongs,
     likedSongsOffset,

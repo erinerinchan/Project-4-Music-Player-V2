@@ -1,6 +1,6 @@
 function ArtistRowTitle({ title }) {
   return (
-    <div className="ArtistRowTitle">
+    <div>
       <h1 style={{ fontSize: '28px',
         lineHeight: '1.6',
         fontWeight: '600',
