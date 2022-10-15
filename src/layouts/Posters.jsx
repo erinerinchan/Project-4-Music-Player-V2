@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-
 import useSpotify from '@/contexts/spotify'
 import Poster from '../components/dashboard/Poster'
 

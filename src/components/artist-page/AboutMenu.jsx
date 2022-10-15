@@ -6,8 +6,6 @@ import ArtistRow from './ArtistRow'
 function AboutMenu({ id, artistTopTracks, artistAlbums, artistSingles, artistRelatedArtists, artistAppearOn, artistCompilations }) {
   const { setTracksQueue } = useSpotify()
 
-  console.log(artistTopTracks)
-
   return (
     <>
       <nav>
@@ -35,6 +33,8 @@ function AboutMenu({ id, artistTopTracks, artistAlbums, artistSingles, artistRel
             <ArtistRow title="Appears On" display="grid" list={artistCompilations} setTracksQueue={setTracksQueue} />
           </a>
         </Link>
+        <br />
+        <br />
       </div>
     </>
   )

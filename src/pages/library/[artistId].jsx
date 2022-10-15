@@ -75,6 +75,8 @@ function ArtistPage() {
           />
         ))}
       </div>
+      <br />
+      <br />
     </div>
   )
 }

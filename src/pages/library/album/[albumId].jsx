@@ -75,6 +75,8 @@ function AlbumPage() {
           />
         ))}
       </div>
+      <br />
+      <br />
     </div>
   )
 }

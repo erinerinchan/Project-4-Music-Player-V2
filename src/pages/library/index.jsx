@@ -73,6 +73,8 @@ function Library({ playlists }) {
           />
         ))}
       </div>
+      <br />
+      <br />
     </div>
   )
 }

@@ -145,6 +145,31 @@ export function SpotifyProvider({ children }) {
     }
   }
 
+  const searchAlbums = () => {
+    if (search) {
+      if (!isSearchResultsLoading) {
+        setIsSearchResultsLoading(true)
+        spotifyApi.searchAlbums(search).then((res) => {
+          setSearchResults(
+            // eslint-disable-next-line no-shadow
+            res.albums.items.map((album) => ({
+              id: album.id,
+              artist: album.artists[0].name,
+              title: album.name,
+              uri: album.uri,
+              albumUrl: album.images[0].url,
+              popularity: album.popularity
+            }))
+          )
+        }).finally(() => {
+          setIsSearchResultsLoading(false)
+        })
+      }
+    } else {
+      setSearchResults([])
+    }
+  }
+
   const searchTracks = () => {
     if (search) {
       if (!isSearchResultsLoading) {
@@ -158,6 +183,30 @@ export function SpotifyProvider({ children }) {
               uri: track.uri,
               albumUrl: track.album.images[0].url,
               popularity: track.popularity
+            }))
+          )
+        }).finally(() => {
+          setIsSearchResultsLoading(false)
+        })
+      }
+    } else {
+      setSearchResults([])
+    }
+  }
+
+  const searchPlaylists = () => {
+    if (search) {
+      if (!isSearchResultsLoading) {
+        setIsSearchResultsLoading(true)
+        spotifyApi.searchPlaylists(search).then((res) => {
+          setSearchResults(
+            // eslint-disable-next-line no-shadow
+            res.playlists.items.map((playlist) => ({
+              id: playlist.id,
+              title: playlist.name,
+              uri: playlist.uri,
+              albumUrl: playlist.images[0].url,
+              popularity: playlist.popularity
             }))
           )
         }).finally(() => {
@@ -363,7 +412,9 @@ export function SpotifyProvider({ children }) {
     search,
     setSearch,
     searchResults,
+    searchAlbums,
     searchTracks,
+    searchPlaylists,
     genres,
     getCategories,
     genre,

@@ -6,10 +6,12 @@ import Dropdown from '@/layouts/Dropdown'
 import useSpotify from '@/contexts/spotify'
 
 function Navbar({ layoutOptions }) {
-  const { search, setSearch, searchTracks } = useSpotify()
+  const { search, setSearch, searchAlbums, searchTracks, searchPlaylists } = useSpotify()
 
   useEffect(() => {
+    searchAlbums()
     searchTracks()
+    searchPlaylists()
   }, [search])
 
   return (
@@ -24,7 +26,7 @@ function Navbar({ layoutOptions }) {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="bg-[#1a1a1a] text-white border-none lg:w-full focus:ring-0 outline-none placeholder-[#fafafa] text-xs"
-              placeholder="Search for Artists, Songs or Podcasts..."
+              placeholder="Search for Albums, Songs or Playlists..."
               search={search}
             />
           </div>
