@@ -7,7 +7,7 @@ export default function Body() {
     isReady,
     searchResults, newReleases,
     getNewReleases
-  } = useSpotify() // like this, you get spotify data from this useSpotify hook
+  } = useSpotify()
 
   useEffect(() => {
     if (isReady) {

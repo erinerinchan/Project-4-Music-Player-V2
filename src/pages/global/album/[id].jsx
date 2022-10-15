@@ -28,8 +28,6 @@ function Album() {
     total: album.total
   }
 
-  console.log(album)
-
   return (
     <div className="mb-14 pb-8">
       <PageBanner pageTitle="album" bannerInfo={bannerInfo} />
