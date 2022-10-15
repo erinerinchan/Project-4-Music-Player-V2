@@ -6,7 +6,7 @@ function CardDisplay({ url, type }) {
         src={url}
         loading="lazy"
         className="h-full w-full top-0 left-0"
-        style={{ borderRadius: type === 'artist' ? '50%' : '0' }}
+        style={{ width: '172px', height: '172px', borderRadius: type === 'artist' ? '50%' : '0' }}
         alt="card-display"
       />
     </div>

@@ -37,6 +37,8 @@ function Genre() {
           />
         ))}
       </div>
+      <br />
+      <br />
     </div>
   )
 }
